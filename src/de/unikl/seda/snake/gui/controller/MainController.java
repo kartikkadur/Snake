@@ -30,7 +30,6 @@ import java.util.ArrayList;
 import java.util.Hashtable;
 
 public class MainController extends JFrame{
-
     // class for basic game controls. Defines methods that sets
     // the game states.
     private GameController gameController;
@@ -61,6 +60,7 @@ public class MainController extends JFrame{
     private static JSlider gameSpeedSlider;
     private static JSlider gameVolumeSlider;
     private static JCheckBox muteCheckBox;
+    private static JCheckBox specialFoodCheckBox;
 
     // panels
     private SnakePanel snakePanel;
@@ -433,6 +433,18 @@ public class MainController extends JFrame{
         MainController.muteCheckBox.setSelected(this.snakeGameSettings.getMuted());
         MainController.muteCheckBox.setOpaque(false);
 
+        JLabel specialFoodLabel = new JLabel();
+        specialFoodLabel.setText("Include Special food/Bug:");
+        specialFoodLabel.setFont(new Font(SnakeUIConstants.font, Font.BOLD, 15));
+        specialFoodLabel.setForeground(SnakeUIConstants.menuFontColor);
+        specialFoodLabel.setOpaque(false);
+
+        MainController.specialFoodCheckBox = new JCheckBox();
+        MainController.specialFoodCheckBox.setForeground(SnakeUIConstants.menuFontColor);
+        MainController.specialFoodCheckBox.addActionListener(new specialFoodCheckBoxHandler());
+        MainController.specialFoodCheckBox.setSelected(this.snakeGameSettings.getIncludeSpecialFood());
+        MainController.specialFoodCheckBox.setOpaque(false);
+
         JPanel backButtonPanel = new JPanel();
         backButtonPanel.setLayout(new GridBagLayout());
         backButtonPanel.setOpaque(false);
@@ -464,6 +476,9 @@ public class MainController extends JFrame{
 
         menuPanel.add(muteLabel);
         menuPanel.add(muteCheckBox);
+
+        menuPanel.add(specialFoodLabel);
+        menuPanel.add(specialFoodCheckBox);
 
         backButtonPanel.add(backButton);
 
@@ -954,8 +969,14 @@ public class MainController extends JFrame{
            MainController.this.handleScreenSize();
        }
    }
-
-    public class muteCheckBoxHandler implements ActionListener{
+   public class specialFoodCheckBoxHandler implements ActionListener{
+       @Override
+       public void actionPerformed(ActionEvent e) {
+           getAudio().play(AudioType.CLICK, false);
+           MainController.this.getSnakeGameSettings().setIncludeSpecialFood(MainController.specialFoodCheckBox.isSelected());
+       }
+   }
+   public class muteCheckBoxHandler implements ActionListener{
         @Override
         public void actionPerformed(ActionEvent e) {
             MainController.this.getSnakeGameSettings().setMuted(MainController.muteCheckBox.isSelected());

@@ -8,13 +8,13 @@ public final class SnakeUIConstants {
     public static final Color DEFAULT_FONT_COLOR = Color.LIGHT_GRAY;
     public static final int FOOD_ANIMATION_FREQ = 10;
     public static final String ABOUT="WELCOME TO SNAKE WORLD\n"+
-                                    "Snake World is a simple fun game to play.\n " +
+                                    "Snake World is a simple fun game to play.\n" +
                                     "There are 3 default levels. The player can create.\n" +
                                     "his own levels using the level editor\n"+
                                     "Enjoy the game\n\n"+
-                                    "Version:- 2.0\n" +
-                                    "Version date:- 28th January 2021\n" +
-                                    "Contact:-\nShilpa Narayan\nSayali Barve\nKartik Kadur";
+                                    "Version - 2.0\n" +
+                                    "Version date - 28th January 2021\n" +
+                                    "Contact -\nShilpa Narayan\nSayali Barve\nKartik Kadur";
     public static final String GAME_OVER = "GAME OVER";
     public static final String HIGH_SCORE = "High Score Board";
 

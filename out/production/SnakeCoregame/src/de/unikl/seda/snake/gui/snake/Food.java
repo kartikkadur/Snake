@@ -1,5 +1,6 @@
 package de.unikl.seda.snake.gui.snake;
 
+import de.unikl.seda.snake.gui.controller.MainController;
 import de.unikl.seda.snake.gui.tools.Drawable;
 import de.unikl.seda.snake.gui.tools.cache.image.ImageCache;
 import de.unikl.seda.snake.gui.tools.foodType.FoodType;
@@ -13,10 +14,12 @@ public class Food implements Drawable {
     private final Color color;
     private Image foodImage;
     private final ImageCache imageCache;
+    private final MainController mainController;
 
-    public Food(Point point, ImageCache imageCache) {
+    public Food(Point point, MainController mainController) {
+        this.mainController = mainController;
         this.rectangle = new Rectangle(point.x, point.y, SnakeUIConstants.CELL_SIZE, SnakeUIConstants.CELL_SIZE);
-        this.imageCache = imageCache;
+        this.imageCache = this.mainController.getImageCache();
         this.color = SnakeUIConstants.DEFAULT_FONT_COLOR;
         this.setFoodType(FoodType.APPLE);
     }
@@ -35,17 +38,19 @@ public class Food implements Drawable {
     }
 
     public void setFoodType(FoodType foodType){
-        this.foodImage = this.imageCache.getFoodImage(foodType);
-        if(foodType ==  FoodType.BANNANA || foodType == FoodType.ORANGE || foodType == foodType.APPLE){
+        if(foodType == FoodType.STRAWBERRY || foodType == FoodType.ORANGE || foodType == foodType.APPLE){
             score = 1;
+            this.foodImage = this.imageCache.getFoodImage(foodType);
         }
-        else if(foodType == FoodType.STRAWBERRY){
-            score = 2;
-            this.foodImage = this.imageCache.getFoodImage(FoodType.STRAWBERRY);
-        }
-        else{
+        else if (this.mainController.getSnakeGameSettings().getIncludeSpecialFood()){
+            if (foodType == FoodType.SPECIAL) {
+                score = 5;
+            }
+            else{
+                score = -2;
+            }
             score = 5;
-            this.foodImage = this.imageCache.getFoodImage(FoodType.SPECIAL);
+            this.foodImage = this.imageCache.getFoodImage(foodType);
         }
     }
 

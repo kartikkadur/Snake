@@ -10,6 +10,8 @@ public class SnakeUIVariables implements Serializable {
     private int level = 1;
     private int volumeLevel = 15;
 
+    private boolean includeSpecialFood = false;
+
     private String playerName = "Player";
     private  String windowSize = "Small";
 
@@ -77,6 +79,14 @@ public class SnakeUIVariables implements Serializable {
 
     public String getPlayerName(){
         return this.playerName;
+    }
+
+    public boolean getIncludeSpecialFood(){
+        return this.includeSpecialFood;
+    }
+
+    public void setIncludeSpecialFood(boolean value){
+        this.includeSpecialFood = value;
     }
 
     public static File getSerialPath(){

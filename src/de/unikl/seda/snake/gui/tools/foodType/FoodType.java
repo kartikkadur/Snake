@@ -8,9 +8,9 @@ import java.util.Random;
 public enum FoodType {
     APPLE,
     ORANGE,
-    BANNANA,
     STRAWBERRY,
-    SPECIAL;
+    SPECIAL,
+    BUG;
 
     private static final List<FoodType> VALUES =
             Collections.unmodifiableList(Arrays.asList(values()));

@@ -43,7 +43,7 @@ public class SnakeAnimationLoop implements AnimationLoop {
         this.snake = new Snake(this.getMainController());
         this.food = new Food(new Point(this.getMainController().getSnakeGameSettings().getRows() / 2,
                 this.getMainController().getSnakeGameSettings().getCols() / 4),
-                this.imageCache);
+                this.mainController);
         this.updateFreq = 0;
         this.score=0;
         //this.createModels();
