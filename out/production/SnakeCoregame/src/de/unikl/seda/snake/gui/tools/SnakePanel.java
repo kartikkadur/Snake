@@ -83,16 +83,6 @@ public class SnakePanel extends JPanel {
                 this.getWidth(),
                 this.getHeight(),
                 null);
-        /*for (int x=0; x<this.getWidth()/(SnakeUIConstants.CELL_SIZE*(SnakeUIConstants.SCALE-1)); ++x){
-            for (int y=0; y<this.getHeight()/(SnakeUIConstants.CELL_SIZE*(SnakeUIConstants.SCALE-1)); ++y){
-                this.dbg.drawImage(this.getMainController().getImageCache().getBackgroundImage(Backgrounds.GAME_BACKGROUND),
-                        x*SnakeUIConstants.CELL_SIZE*SnakeUIConstants.SCALE,
-                        y*SnakeUIConstants.CELL_SIZE*SnakeUIConstants.SCALE,
-                        SnakeUIConstants.CELL_SIZE*SnakeUIConstants.SCALE,
-                        SnakeUIConstants.CELL_SIZE*SnakeUIConstants.SCALE,
-                        null);
-            }
-        }*/
 
         for (Drawable d : this.drawables) {
             d.draw(this.dbg);

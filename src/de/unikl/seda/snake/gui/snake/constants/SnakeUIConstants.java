@@ -16,7 +16,7 @@ public final class SnakeUIConstants {
                                     "Version date - 28th January 2021\n" +
                                     "Contact -\nShilpa Narayan\nSayali Barve\nKartik Kadur";
     public static final String GAME_OVER = "GAME OVER";
-    public static final String HIGH_SCORE = "High Score Board";
+    public static final String INSTRUCTIONS = "High Score Board";
 
     public static final int width = 24;
     public static final int height = 32;

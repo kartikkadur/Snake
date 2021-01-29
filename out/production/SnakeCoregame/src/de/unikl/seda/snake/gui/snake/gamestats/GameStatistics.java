@@ -16,7 +16,7 @@ public class GameStatistics implements Comparable<GameStatistics>, Serializable{
     private int totalTimeSpent;
     private int playerRank;
     private int level;
-    private int speed;
+    private String speed;
     private String playDate;
     private static final Path highScoreFile = Paths.get(GameStatistics.getSerPath().toString(), "highScoreData.ser");
 
@@ -68,12 +68,23 @@ public class GameStatistics implements Comparable<GameStatistics>, Serializable{
         this.level = level;
     }
 
-    public int getSpeed(){
+    public String getSpeed(){
         return this.speed;
     }
 
     public void setSpeed(int speed){
-        this.speed = speed;
+        if (speed <= 10){
+            this.speed = "Slow";
+        }
+        else if (speed > 10 && speed <= 15){
+            this.speed = "Medium";
+        }
+        else if (speed >=15 && speed < 20) {
+            this.speed = "Fast";
+        }
+        else{
+            this.speed = "Very Fast";
+        }
     }
 
     @Override

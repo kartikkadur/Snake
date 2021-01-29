@@ -122,6 +122,7 @@ public class Animator implements Runnable {
     private void finishGame() {
         this.mainController.getSnakeAnimationLoop().setScore(0);
         this.mainController.getSnakeAnimationLoop().resetStats();
-        this.mainController.displayMainMenu();
+        this.mainController.getAudio().stopAll();
+        this.mainController.makeGUI();
     }
 }

@@ -67,23 +67,6 @@ public class MainController extends JFrame{
     private StatusPanel statusPanel;
 
     public MainController() {
-        // Game Settings
-        this.snakeGameSettings = SnakeUIVariables.readLevelSettings();
-        if(this.snakeGameSettings == null){
-            this.snakeGameSettings = new SnakeUIVariables();
-        }
-        //Game audio
-        this.audio = new Audio();
-        // Image cache
-        this.imageCache = new ImageCacheCreation();
-        // object handling snake directions
-        this.direction = new Direction();
-        // Game stats
-        this.gameStats = new GameStatistics();
-        // Level Editor
-        // add default levels to serialized file
-        this.generateDefaultLevels();
-        this.levelEditor = new LevelEditor(this);
         // Main menu GUI
         this.makeGUI();
     }
@@ -165,7 +148,28 @@ public class MainController extends JFrame{
         return this.snakeGameSettings;
     }
 
+    public void createObjects(){
+        // Game Settings
+        this.snakeGameSettings = SnakeUIVariables.readLevelSettings();
+        if(this.snakeGameSettings == null){
+            this.snakeGameSettings = new SnakeUIVariables();
+        }
+        //Game audio
+        this.audio = new Audio();
+        // Image cache
+        this.imageCache = new ImageCacheCreation();
+        // object handling snake directions
+        this.direction = new Direction();
+        // Game stats
+        this.gameStats = new GameStatistics();
+        // Level Editor
+        // add default levels to serialized file
+        this.generateDefaultLevels();
+        this.levelEditor = new LevelEditor(this);
+    }
+
     public void makeGUI() {
+        this.createObjects();
         // snake frame
         this.setTitle("Snake World");
         this.setResizable(false);
@@ -280,6 +284,14 @@ public class MainController extends JFrame{
         settingsButton.setFont(new Font(SnakeUIConstants.font, Font.BOLD, 25));
         settingsButton.addActionListener(new settingsButtonHandler());
 
+        JButton howToButton = new JButton("Controls");
+        howToButton.setOpaque(false);
+        howToButton.setContentAreaFilled(false);
+        howToButton.setBorderPainted(false);
+        howToButton.setForeground(SnakeUIConstants.menuFontColor);
+        howToButton.setFont(new Font(SnakeUIConstants.font, Font.BOLD, 25));
+        howToButton.addActionListener(new howToButtonHandler());
+
         JButton aboutButton = new JButton("About");
         aboutButton.setOpaque(false);
         aboutButton.setContentAreaFilled(false);
@@ -301,6 +313,7 @@ public class MainController extends JFrame{
         menuPanel.add(scoreButton);
         menuPanel.add(levelEditorButton);
         menuPanel.add(settingsButton);
+        menuPanel.add(howToButton);
         menuPanel.add(aboutButton);
         menuPanel.add(exitButton);
 
@@ -519,7 +532,7 @@ public class MainController extends JFrame{
         JTextArea aboutText = new JTextArea();
         aboutText.setText(SnakeUIConstants.ABOUT);
         aboutText.setForeground(SnakeUIConstants.menuFontColor);
-        aboutText.setFont(new Font(SnakeUIConstants.font, Font.BOLD, 20));
+        aboutText.setFont(new Font(SnakeUIConstants.font, Font.PLAIN, 20));
         aboutText.setOpaque(false);
 
         JPanel backPanel = new JPanel();
@@ -541,6 +554,153 @@ public class MainController extends JFrame{
 
         mainPanel.add(titlePanel, BorderLayout.NORTH);
         mainPanel.add(aboutPanel,BorderLayout.CENTER);
+        mainPanel.add(backPanel, BorderLayout.SOUTH);
+
+        container.add(mainPanel);
+
+        container.revalidate();
+        container.repaint();
+    }
+
+    public void displayHowTo() {
+        Container container = this.getContentPane();
+        container.removeAll();
+        this.setTitle("Instructions");
+        this.setLayout(new BorderLayout());
+
+        BackgroundPanel mainPanel = new BackgroundPanel();
+        mainPanel.setLayout(new BorderLayout());
+        mainPanel.setOpaque(false);
+
+        JPanel titlePanel = new JPanel();
+        titlePanel.setLayout(new GridBagLayout());
+        titlePanel.setOpaque(false);
+
+        JLabel titleLabel = new JLabel();
+        titleLabel.setText("Controls");
+        titleLabel.setForeground(SnakeUIConstants.menuFontColor);
+        titleLabel.setFont(new Font(SnakeUIConstants.font, Font.BOLD, 25));
+        titleLabel.setOpaque(false);
+
+        JPanel menuPanel = new JPanel();
+        menuPanel.setLayout(new GridLayout(6,0));
+        menuPanel.setOpaque(false);
+
+        JLabel moveUp = new JLabel();
+        moveUp.setText("Move Up : ");
+        moveUp.setHorizontalAlignment(JLabel.CENTER);
+        moveUp.setForeground(SnakeUIConstants.menuFontColor);
+        moveUp.setFont(new Font(SnakeUIConstants.font, Font.PLAIN, 18));
+        moveUp.setOpaque(false);
+
+        JLabel moveUpKey = new JLabel();
+        moveUpKey.setText("Up Arrow");
+        moveUpKey.setHorizontalAlignment(JLabel.LEFT);
+        moveUpKey.setForeground(SnakeUIConstants.menuFontColor);
+        moveUpKey.setFont(new Font(SnakeUIConstants.font, Font.PLAIN, 18));
+        moveUpKey.setOpaque(false);
+
+        JLabel moveDown = new JLabel();
+        moveDown.setText("Move Down : ");
+        moveDown.setHorizontalAlignment(JLabel.CENTER);
+        moveDown.setForeground(SnakeUIConstants.menuFontColor);
+        moveDown.setFont(new Font(SnakeUIConstants.font, Font.PLAIN, 18));
+        moveDown.setOpaque(false);
+
+        JLabel moveDownKey = new JLabel();
+        moveDownKey.setText("Down Arrow");
+        moveDownKey.setHorizontalAlignment(JLabel.LEFT);
+        moveDownKey.setForeground(SnakeUIConstants.menuFontColor);
+        moveDownKey.setFont(new Font(SnakeUIConstants.font, Font.PLAIN, 18));
+        moveDownKey.setOpaque(false);
+
+        JLabel moveRight = new JLabel();
+        moveRight.setText("Move Right : ");
+        moveRight.setHorizontalAlignment(JLabel.CENTER);
+        moveRight.setForeground(SnakeUIConstants.menuFontColor);
+        moveRight.setFont(new Font(SnakeUIConstants.font, Font.PLAIN, 18));
+        moveRight.setOpaque(false);
+
+        JLabel moveRightKey = new JLabel();
+        moveRightKey.setText("Right Arrow");
+        moveRightKey.setHorizontalAlignment(JLabel.LEFT);
+        moveRightKey.setForeground(SnakeUIConstants.menuFontColor);
+        moveRightKey.setFont(new Font(SnakeUIConstants.font, Font.PLAIN, 18));
+        moveRightKey.setOpaque(false);
+
+        JLabel moveLeft = new JLabel();
+        moveLeft.setText("Move Left : ");
+        moveLeft.setHorizontalAlignment(JLabel.CENTER);
+        moveLeft.setForeground(SnakeUIConstants.menuFontColor);
+        moveLeft.setFont(new Font(SnakeUIConstants.font, Font.PLAIN, 18));
+        moveLeft.setOpaque(false);
+
+        JLabel moveLeftKey = new JLabel();
+        moveLeftKey.setText("Left Arrow");
+        moveLeftKey.setHorizontalAlignment(JLabel.LEFT);
+        moveLeftKey.setForeground(SnakeUIConstants.menuFontColor);
+        moveLeftKey.setFont(new Font(SnakeUIConstants.font, Font.PLAIN, 18));
+        moveLeftKey.setOpaque(false);
+
+        JLabel pauseGame = new JLabel();
+        pauseGame.setText("Pause : ");
+        pauseGame.setHorizontalAlignment(JLabel.CENTER);
+        pauseGame.setForeground(SnakeUIConstants.menuFontColor);
+        pauseGame.setFont(new Font(SnakeUIConstants.font, Font.PLAIN, 18));
+        pauseGame.setOpaque(false);
+
+        JLabel pauseGameKey = new JLabel();
+        pauseGameKey.setText("Space Key");
+        pauseGameKey.setHorizontalAlignment(JLabel.LEFT);
+        pauseGameKey.setForeground(SnakeUIConstants.menuFontColor);
+        pauseGameKey.setFont(new Font(SnakeUIConstants.font, Font.PLAIN, 18));
+        pauseGameKey.setOpaque(false);
+
+        JLabel exit = new JLabel();
+        exit.setText("Back To Main menu : ");
+        exit.setHorizontalAlignment(JLabel.CENTER);
+        exit.setForeground(SnakeUIConstants.menuFontColor);
+        exit.setFont(new Font(SnakeUIConstants.font, Font.PLAIN, 18));
+        exit.setOpaque(false);
+
+        JLabel exitKey = new JLabel();
+        exitKey.setText("Escape Key");
+        exitKey.setHorizontalAlignment(JLabel.LEFT);
+        exitKey.setForeground(SnakeUIConstants.menuFontColor);
+        exitKey.setFont(new Font(SnakeUIConstants.font, Font.PLAIN, 18));
+        exitKey.setOpaque(false);
+
+        JPanel backPanel = new JPanel();
+        backPanel.setLayout(new GridBagLayout());
+        backPanel.setOpaque(false);
+
+        JButton backButton = new JButton();
+        backButton.setText("Back");
+        backButton.setForeground(SnakeUIConstants.menuFontColor);
+        backButton.setFont(new Font(SnakeUIConstants.font, Font.BOLD, 20));
+        backButton.addActionListener(new backButtonHandler());
+        backButton.setOpaque(false);
+        backButton.setContentAreaFilled(false);
+        backButton.setBorderPainted(false);
+
+        titlePanel.add(titleLabel);
+        menuPanel.add(moveUp);
+        menuPanel.add(moveUpKey);
+        menuPanel.add(moveDown);
+        menuPanel.add(moveDownKey);
+        menuPanel.add(moveRight);
+        menuPanel.add(moveRightKey);
+        menuPanel.add(moveLeft);
+        menuPanel.add(moveLeftKey);
+        menuPanel.add(pauseGame);
+        menuPanel.add(pauseGameKey);
+        menuPanel.add(exit);
+        menuPanel.add(exitKey);
+
+        backPanel.add(backButton);
+
+        mainPanel.add(titlePanel, BorderLayout.NORTH);
+        mainPanel.add(menuPanel,BorderLayout.CENTER);
         mainPanel.add(backPanel, BorderLayout.SOUTH);
 
         container.add(mainPanel);
@@ -680,7 +840,7 @@ public class MainController extends JFrame{
                 int rank = data.get(i).getPlayerRank();
                 int points = data.get(i).getTotalPoints();
                 String date = data.get(i).getPlayDate();
-                int speed = data.get(i).getSpeed();
+                String speed = data.get(i).getSpeed();
                 int level = data.get(i).getLevel();
 
                 Object[] statData = {name, rank, points, date, speed, level};
@@ -875,6 +1035,13 @@ public class MainController extends JFrame{
         public void actionPerformed(ActionEvent e) {
             getAudio().play(AudioType.CLICK, false);
             displayAbout();
+        }
+    }
+
+    public class howToButtonHandler implements ActionListener {
+        public void actionPerformed(ActionEvent e) {
+            getAudio().play(AudioType.CLICK, false);
+            displayHowTo();
         }
     }
 

@@ -155,7 +155,8 @@ public class SnakeAnimationLoop implements AnimationLoop {
             this.gameStatistics.add(this.getMainController().getGameStats());
         }
         else {
-            if(this.score > this.gameStatistics.get(this.gameStatistics.size()-1).getTotalPoints()){
+            if(this.gameStatistics.size() < 10 ||
+                    this.score > this.gameStatistics.get(this.gameStatistics.size()-1).getTotalPoints()){
                 String playerName = JOptionPane.showInputDialog("Your Name : ");
                 this.mainController.getSnakeGameSettings().setPlayerName(playerName);
                 this.mainController.getGameStats().setPlayerName(playerName);
