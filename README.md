@@ -11,4 +11,24 @@ levels and can play that level instantly after the editing is done.
 Currently level editor only works for a single window size. Scaling of the blocks for different levels are
 yet to be implemented.
 
+## Running the game
+
+### On Linux Systems 
+Clone the repository or just download the SnakeCoregame.jar file and the run.sh file, run the below command on terminal:
+```
+cd <clone directory>
+./run.sh
+```
+
+### On windows
+Clone the repository or just download the SnakeCoregame.jar and run the below command on terminal:
+```
+cd <clone directory> or <jar download path>
+java -jar SnakeCoregame.jar
+```
+
+## Dependencies
+### Required
+openjdk 15
+
 Have fun.
