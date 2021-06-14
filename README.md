@@ -34,6 +34,6 @@ openjdk 15
 Have fun.
 
 ## Snapshots
-![InGame](https://github.com/kartikkadur/Snake/blob/main/img1.png)
-![MainMenu](https://github.com/kartikkadur/Snake/blob/main/img2.png)
-![GameOverMenu](https://github.com/kartikkadur/Snake/blob/main/img3.png)
+![InGame](https://github.com/kartikkadur/Snake/blob/main/img1.PNG)
+![MainMenu](https://github.com/kartikkadur/Snake/blob/main/img2.PNG)
+![GameOverMenu](https://github.com/kartikkadur/Snake/blob/main/img3.PNG)
