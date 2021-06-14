@@ -32,3 +32,8 @@ java -jar SnakeCoregame.jar
 openjdk 15
 
 Have fun.
+
+## Snapshots
+![alt text](https://github.com/kartikkadur/Snake/blob/main/img1.png?raw=true)
+![alt text](https://github.com/kartikkadur/Snake/blob/main/img2.png?raw=true)
+![alt text](https://github.com/kartikkadur/Snake/blob/main/img3.png?raw=true)
